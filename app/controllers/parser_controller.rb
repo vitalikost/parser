@@ -64,4 +64,23 @@ class ParserController < ApplicationController
   end
 
 
+  def thenextweb
+    require 'nokogiri'
+    require 'open-uri'
+    @web=[]
+
+    # Fetch and parse HTML document
+    doc = Nokogiri::HTML(open('https://thenextweb.com/latest/'))
+
+
+
+    doc.css('.u-col-xs-6').each do |link|
+      # puts '------------------------------'
+      # puts link.text
+
+      @web.push(link)
+    end
+  end
+
+
 end

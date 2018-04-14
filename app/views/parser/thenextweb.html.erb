@@ -1,0 +1,24 @@
+<% @web.each do |web| %>
+
+    <% if web.css('.story-title').present?%>
+      <div>
+        <div>
+          <% if web.css('.story-image').present?%>
+              <%=image_tag(web.css('.story-image')[0]["data-src"]) %>
+          <% end %>
+
+        </div>
+
+        <h4><%= web.css('.story-title').text %></h4>
+
+        <div>
+          <%= web.css('.story-chunk').text %>
+        </div>
+
+        <div>
+          <%= link_to("Подробнее",web.css('.story-title a')[0]['href'] , method: :get, target: "_blank")%>
+        </div>
+        <hr>
+      </div>
+    <% end %>
+<% end %>

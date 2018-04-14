@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   get 'parser/scraperbash'
   get 'parser/scraperarduino'
   get 'parser/scraperyaplakal'
+  get 'parser/thenextweb'
   root 'parser#index'
 end
