@@ -70,16 +70,16 @@ class ParserController < ApplicationController
     @web=[]
 
     # Fetch and parse HTML document
-    doc = Nokogiri::HTML(open('https://thenextweb.com/latest/'))
+    for i in 1..10
+      doc = Nokogiri::HTML(open('https://thenextweb.com/latest/page/'+i.to_s))
 
+      doc.css('.u-col-xs-6').each do |link|
+        # puts '------------------------------'
+        # puts link.text
 
-
-    doc.css('.u-col-xs-6').each do |link|
-      # puts '------------------------------'
-      # puts link.text
-
-      @web.push(link)
-    end
+        @web.push(link)
+      end
+     end
   end
 
 
