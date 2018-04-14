@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-md-12">
+    <header>
+      <h1 class="text-center">Яплакалъ:</h1>
+    </header>
+  </div>
+</div>
+
+<% for i in 0..@yap.length-1 %>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h4><%= @yap[i].text %></h4>
+        <div>
+
+          <div>
+            <% if (@yap_content[i].css('img')).present? %>
+                <%=image_tag(@yap_content[i].css('img')[0]["src"]) %>
+            <% end %>
+
+            <% if (@yap_content[i].css('iframe')).present? %>
+                <%= content_tag(:iframe, '', src: @yap_content[i].css('iframe')[0]["src"],
+                                width: 560, height: 315, frameborder: 0) %>
+            <% end %>
+          </div>
+
+          <%= @yap_content[i].text %>
+
+          <div>
+            <%= link_to("Подробнее",@yap[i].css('a')[0]['href'] , method: :get, target: "_blank")%>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+<% end %>

@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-12">
+    <header>
+      <h1 class="text-center">Проэкты ардуино:</h1>
+    </header>
+  </div>
+</div>
+
+<% @arduino.each do |arduino| %>
+   <div class="row">
+      <div class="col-md-12">
+        <h4><%= arduino.css('.views-field-title').text %></h4>
+        <div>
+          <% if (arduino.css('.views-field-teaser img')).present? %>
+              <%=image_tag("http://arduino.ru"+arduino.css('.views-field-teaser img')[0]["src"]) %>
+          <% end %>
+
+          <% if (arduino.css('.views-field-teaser iframe')).present? %>
+              <%= content_tag(:iframe, '', src: arduino.css('.views-field-teaser iframe')[0]["src"],
+                              width: 560, height: 315, frameborder: 0) %>
+          <% end %>
+        </div>
+        <div>
+          <%= arduino.css('.views-field-teaser').text %>
+        </div>
+        <div>
+          <%= link_to("Подробнее","http://arduino.ru"+arduino.css('.views-field-path a')[0]['href'] , method: :get, target: "_blank")%>
+        </div>
+      </div>
+    </div>
+
+ <% end %>

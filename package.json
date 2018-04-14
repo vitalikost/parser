@@ -1,0 +1,11 @@
+{
+  "name": "parser_bash",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "3"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "vitalik <vitalikostrovskij@yandex.ru>",
+  "license": "MIT"
+}

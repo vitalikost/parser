@@ -1,0 +1,14 @@
+
+    <% @bash.each do |bash| %>
+          <div>
+            <% bash.children.each do |t| %>
+              <% if(t.text).present? %>
+                <br>
+              <% end %>
+
+              <%= t.text %>
+
+            <% end %>
+            <hr>
+          </div>
+    <% end %>
