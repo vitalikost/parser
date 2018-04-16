@@ -1,14 +1,33 @@
 
-    <% @bash.each do |bash| %>
+    <% @link_array_header.each_with_index {|link,index |  %>
           <div>
-            <% bash.children.each do |t| %>
-              <% if(t.text).present? %>
-                <br>
-              <% end %>
+            <h4><%= link.text %></h4>
 
-              <%= t.text %>
+            <a href="#myModal<%=index%>" class="btn btn-primary" data-toggle="modal">Подробнее</a>
+            <%= link_to("Открыть",link.css('a')[0]['href'] , method: :get, target: "_blank",class:"btn btn-primary" )%>
+            <div id="myModal<%=index%>" class="modal fade">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title"><%= link.text %></h4>
+                  </div>
+                  <div class="modal-body">
+                    <%if(@link_array_body.length > 0) %>
+                        <div>
+                          <%= @link_array_body[index].text %>
+                        </div>
+                    <%end %>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-            <% end %>
-            <hr>
+          <hr>
           </div>
-    <% end %>
+    <%} %>
+
+
