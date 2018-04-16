@@ -6,10 +6,9 @@ class ParserController < ApplicationController
   def scraperbash
     @bash=[]
     # Fetch and parse HTML document
-    doc = Nokogiri::HTML(open('https://bash.im'))
+    doc = Nokogiri::HTML(open('https://pikabu.ru/'))
 
-    puts "### Search for nodes by css"
-    doc.css('.text').each do |link|
+    doc.css('.story__content').each do |link|
      # puts '------------------------------'
      # puts link.text
 
@@ -105,6 +104,32 @@ class ParserController < ApplicationController
           end
         end
     end
+
+    name_site = 'https://pikabu.ru/'
+    doc = Nokogiri::HTML(open(name_site))
+
+    if (name_site = 'https://pikabu.ru/')
+      limit = 0
+      doc.css('.story__header').each do |link|
+        limit = limit+1
+        if(limit <= @limit)
+          @link_array_header.push(link)
+        else
+          break
+        end
+      end
+
+      limit = 0
+      doc.css('.story__content').each do |link|
+        limit = limit+1
+        if(limit <= @limit)
+          @link_array_body.push(link)
+        else
+          break
+        end
+      end
+    end
+
   end
 
 end
