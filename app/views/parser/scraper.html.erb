@@ -15,6 +15,16 @@
                   <div class="modal-body">
                     <%if(@link_array_body.length > 0) %>
                         <div>
+                          <div>
+                            <% if (@link_array_body[index].css('img')).present? %>
+                              <%=image_tag(@link_array_body[index].css('img')[0]["src"],width: 560, height: 315) %>
+                            <% end %>
+
+                            <% if (@link_array_body[index].css('iframe')).present? %>
+                              <%= content_tag(:iframe, '', src: @link_array_body[index].css('iframe')[0]["src"],
+                                              width: 560, height: 315, frameborder: 0) %>
+                            <% end %>
+                          </div>
                           <%= @link_array_body[index].text %>
                         </div>
                     <%end %>
