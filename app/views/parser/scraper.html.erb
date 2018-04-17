@@ -1,10 +1,25 @@
 
+    <div class="row">
+      <div class="col-md-12">
+        <header>
+          <h1 class="text-center">Отдохни:</h1>
+        </header>
+      </div>
+    </div>
+
     <% @link_array_header.each_with_index {|link,index |  %>
           <div>
             <h4><%= link.text %></h4>
 
             <a href="#myModal<%=index%>" class="btn btn-primary" data-toggle="modal">Подробнее</a>
             <%= link_to("Открыть",link.css('a')[0]['href'] , method: :get, target: "_blank",class:"btn btn-primary" )%>
+
+            <%if(@link_array_info.length > 0) %>
+                <%= @link_array_info[index].text %>
+            <% end %>
+
+            <%= link.css('a')[0]['href'] %>
+
             <div id="myModal<%=index%>" class="modal fade">
               <div class="modal-dialog">
                 <div class="modal-content">

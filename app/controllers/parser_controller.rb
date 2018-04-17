@@ -8,11 +8,9 @@ class ParserController < ApplicationController
     # Fetch and parse HTML document
     doc = Nokogiri::HTML(open('https://pikabu.ru/'))
 
-    doc.css('.story__content').each do |link|
-     # puts '------------------------------'
-     # puts link.text
 
-      @bash.push(link)
+    doc.css('.story__datetime').each do |link|
+        @bash.push(link)
     end
 
   end
@@ -78,6 +76,7 @@ class ParserController < ApplicationController
   def scraper
     @link_array_header = []
     @link_array_body = []
+    @link_array_info = []
     @limit = 10
 
     name_site = 'http://www.yaplakal.com/'
@@ -103,7 +102,19 @@ class ParserController < ApplicationController
             break
           end
         end
+
+        limit = 0
+        doc.css('.icon-date').each do |link|
+          limit = limit+1
+          if(limit <= @limit)
+            @link_array_info.push(link)
+          else
+            break
+          end
+        end
+
     end
+
 
     name_site = 'https://pikabu.ru/'
     doc = Nokogiri::HTML(open(name_site))
@@ -128,6 +139,17 @@ class ParserController < ApplicationController
           break
         end
       end
+
+      limit = 0
+      doc.css('.story__datetime').each do |link|
+        limit = limit+1
+        if(limit <= @limit)
+          @link_array_info.push(link)
+        else
+          break
+        end
+      end
+
     end
 
   end
