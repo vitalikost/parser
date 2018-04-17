@@ -7,7 +7,22 @@
       </div>
     </div>
 
+<div class="row">
+   <div class="col-md-12">
+ <table id="link_tables" class="table">
+      <thead>
+      <tr>
+        <td>
+      Свежачек:
+        <td>
+      <tr>
+      </thead>
+      <tbody>
+
     <% @link_array_header.each_with_index {|link,index |  %>
+          <tr>
+          <td>
+
           <div>
             <h4><%= link.text %></h4>
 
@@ -50,9 +65,11 @@
                 </div>
               </div>
             </div>
-
-          <hr>
           </div>
+          </td>
+          </tr>
     <%} %>
-
-
+      </tbody>
+    </table>
+   </div>
+</div>
